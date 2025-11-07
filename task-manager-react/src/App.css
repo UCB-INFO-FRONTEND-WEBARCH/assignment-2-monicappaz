@@ -1,42 +1,355 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Removed template CSS from creating the react files */
+
+/* Added CSS from A1 */
+/* ========== CODE TEMPLATE GIVEN/GENERAL STYLES ========== */
+/* This is your CSS file */
+/* Setting global styles: Roboto font (size 14 px) + box sizing border-box */
+* {
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Given in base file, not using body color */
+/* Added html and height to make the containers take up the full height of the screen */
+html,
+body {
+  /* color: black; */
+  height: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Added body background color to site (added since A1) */
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Created flexbox for nav and main */
+.container {
+  display: flex;
+  height: 100%;
+}
+
+/* ========== HEADER STYLES ========== */
+/* Header styling: red-orange header w/ white text, icons, and spacing */
+header {
+  background-color: #dc4c3e;
+  color: #ffffff;
+  border-radius: 5px 5px 0 0;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between; /* Used space between to make my two flex items at the start and the end of the container */
+  align-items: center;
+}
+
+/* Adding styling to task counter on right side (Icon + Stacking Counter information) */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding-right: 16px;
+  position: relative;
+}
+
+/* Aligning header groups better visually (icons were not lining up well before) */
+header section {
+  display: flex;
+  align-items: center;
+}
+
+/* Added spacing to header left side (hamburger menu + search bar) so not flush on left*/
+header > section:first-of-type {
+  padding-left: 32px;
+}
+
+/* Same as above (added spacing for task counter so not flush on right) */
+header > section:last-of-type {
+  padding-right: 16px;
+}
+
+/* Styling the search bar to match the image more */
+#search-bar {
+  /* Changed the search bar style */
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-style: none;
+  /* Added magnifying glass icon + fixed it visually within the bar*/
+  background-image: url("/img_assets/search_icon.png");
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  padding-left: 35px;
+  /* Adjusted some of the sizing and spacing of the search bar */
+  width: 225px;
+  height: 30px;
+  margin-left: 10px;
+  /* New additions */
+  max-width: 100%;
+  flex: 1;
+}
+
+/* Changed the text within the search bar to be white */
+#search-bar::placeholder {
+  color: #ffffff;
+}
+
+/* ========== LEFT NAV STYLES ========== */
+/* Set background and text color for nav + width of nav (specified in write up) */
+nav {
+  background-color: #fefbf2;
+  color: #000000;
+  width: 300px;
+  padding: 4px; /* Added this to align nav elements to start where Inbox in main does*/
+}
+
+/* Rm bullet points on unordered list */
+nav ul {
+  list-style: none;
+}
+
+/* Aligned each nav row vertically + and added some visual changes */
+nav li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 4px;
+}
+
+/* When hovering nav option, text becomes bold, highlight option in white, and make cursor pointer */
+nav li:hover {
+  background-color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* When hovering on nav option, we don't make the task count bold (to match provided screenshot) */
+nav li:hover .task-count {
+  font-weight: 400;
+}
+
+/* Added styling to task counts to match the text color/size reqs in writeup */
+.task-count {
+  color: #7e7d79;
+  font-size: 12px;
+}
+
+/* ========== MAIN CONTENT STYLES ========== */
+/* Main container takes up rest of the space after left nav + added element spacing */
+main {
+  flex: 1;
+  padding: 24px 48px;
+}
+
+/* Rm bullet points in unordered list and rm padding/margin for future style changes */
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Added styling to each list element to match the writeup image */
+main ul li {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  /* Added separation lines under each task for visual consistency to the screenshot */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Checkbox styling: circular w/ border and cursor + stays circular when resizing screen */
+main ul li input[type="checkbox"] {
+  appearance: none; /* Removes initial checkbox square styling*/
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 2px solid #757575;
+  aspect-ratio: 1 / 1; /* Added this to keep the circles the same shape as we resize screen */
+}
+
+/* When we hover over uncompleted task, the border color darkens (to match OG checkbox style) */
+main ul li input[type="checkbox"]:hover {
+  border: 2px solid #5e5d59;
+}
+
+/* When task is checked, we set the background + border color to blue (to match OG checkbox style) */
+main ul li input[type="checkbox"]:checked {
+  background-color: #3273f6; /* Picked the default color from the regular style of a checkbox before changing it */
+  border-color: #3273f6;
+}
+
+/* Once task is checked and we change background/border color, we add the checkmark and center in circle */
+main ul li input[type="checkbox"]:checked::after {
+  content: "\2713"; /* Unicode for checkmark */
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* When the task is checked, it darkens on hover (to match OG checkbox style) */
+main ul li input[type="checkbox"]:checked:hover {
+  background-color: #255de9;
+  border-color: #255de9;
+}
+
+/* Setting the h1 to font size 20px per the assignment write up (for Inbox) */
+main h1 {
+  font-size: 20px;
+  margin: 0 0 10px 0; /* Added some space between the Inbox and first task */
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+/* Adding Responsive Design Element to Hide Left Nav when in a Mobile View */
+@media (max-width: 480px) {
+  nav {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* ========== A2 STYLES ========== */
+/* Added style to checked tasks to be crossed through */
+.task-text.completed {
+  text-decoration: line-through;
+  color: #7e7d79;
+  opacity: 0.7;
 }
 
-.card {
-  padding: 2em;
+/* ========== FILTER BUTTON STYLES ========== */
+/* Styling filter buttons section */
+.filter-buttons {
+  margin: 12px 0;
+  display: flex;
+  gap: 8px;
 }
 
-.read-the-docs {
-  color: #888;
+/* Adding style to the button parts themselves */
+.filter-buttons button {
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+/* Active filter button highlight */
+.filter-buttons .active {
+  font-weight: 500;
+  background-color: #dc4c3e;
+  color: #ffffff;
+}
+
+/* ========== TASK INPUT STYLES ========== */
+/* Styling task input bar area */
+.task-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+
+/* More styles for the task input area */
+.task-form input[type="text"] {
+  background: #f0f0f0;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  width: 280px;
+}
+
+/* Styled Add button for the tasks */
+.task-form button {
+  background: #1f1f1f;
+  color: #ffffff;
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Styling check icon in header to sit next to task ratio */
+.check-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+  position: absolute;
+  right: 60px;
+  top: 1px;
+}
+
+/* Styling for having the ratio + additional counter info below it */
+.task-counter.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  color: #ffffff;
+}
+
+/* Style for the top line of the task count (ratio) */
+.task-counter-ratio {
+  background: rgba(255, 255, 255, 0.18);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Style for the bottom line (Completed/Active info) */
+.task-counter-sub {
+  font-size: 12px;
+  opacity: 0.9;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ========== DELETE BUTTON STYLES ========== */
+
+/* Stye delete button to match filter button styling */
+.delete-btn {
+  background-color: #dc4c3e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover on button darkens background for better visual feedback */
+.delete-btn:hover {
+  background-color: #b93e33;
+}
+
+/* Sets button on the right side */
+main ul li .delete-btn {
+  margin-left: auto;
+}
+
+/* ========== FILTER MESSAGE STYLES ========== */
+
+/* Empty state card */
+.empty-state {
+  margin: 14px 0 0;
+  padding: 16px 18px;
+  background: #f5f5f5;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+}
+
+/* Styling for main message under each filter */
+.empty-title {
+  margin: 0 0 2px 0;
+  font-size: 16px;
+  font-weight: 400;
 }

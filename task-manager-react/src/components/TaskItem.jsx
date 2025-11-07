@@ -1,9 +1,7 @@
-// TODO: STYLE TASK TEXT WITH CONDITIONAL STYLING
-// TODO: MAKE SURE RENDER IS SEMANTIC???
-
+// Creates individual tasks with check box + delete button
 function TaskItem({ task, onToggle, onDelete }) {
   return (
-    <div>
+    <>
       {/* Creating checkbox for each task item, showing if it is checked or not, and togging when pressed */}
       <input
         type="checkbox"
@@ -11,10 +9,14 @@ function TaskItem({ task, onToggle, onDelete }) {
         onChange={() => onToggle(task.id)}
       />
       {/* Added corresponding task text */}
-      <p>{task.text}</p>
+      <p className={task.completed ? "task-text completed" : "task-text"}>
+        {task.text}
+      </p>
       {/* Added delete button for the task */}
-      <button onClick={() => onDelete(task.id)}>Delete</button>
-    </div>
+      <button className="delete-btn" onClick={() => onDelete(task.id)}>
+        Delete
+      </button>
+    </>
   );
 }
 

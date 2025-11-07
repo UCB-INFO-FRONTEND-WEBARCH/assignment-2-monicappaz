@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// Form component to add new tasks
 function TaskForm({ onAddTask }) {
   // Setting up local state for task input from user
   const [taskText, setTaskText] = useState("");
@@ -26,7 +27,7 @@ function TaskForm({ onAddTask }) {
 
   // JSX Rendering Code:
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="task-form" onSubmit={handleSubmit}>
       {/* Added input to type in task text */}
       <input
         type="text"
